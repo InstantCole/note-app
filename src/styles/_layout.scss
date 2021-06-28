@@ -1,0 +1,31 @@
+.nav-bar {
+    display: flex;
+    background-color: black;
+    justify-content: space-between;
+
+    margin-bottom: 1rem;
+
+    ul {
+        display: flex;
+        padding: 0;
+        margin: 0;
+    }
+
+   
+}
+
+.nav-bar-item {
+    display: block;
+    padding: 1rem;
+    list-style: none;
+    
+    a {
+        text-decoration: none;
+        color: white;
+        
+    }
+}
+
+.active {
+    background-color: grey;
+}

@@ -1,6 +1,7 @@
 import React from 'react'
-import Layout from './layout.js'
-import { addClassById } from './utils.js'
+import Layout from './Layout.js'
+import TwitchVod from './TwitchVod'
+import { addClassById } from '../utils.js'
 
 
 function App() {
