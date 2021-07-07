@@ -2,7 +2,6 @@
     display: flex;
     background-color: black;
     justify-content: space-between;
-
     margin-bottom: 1rem;
 
     ul {
@@ -10,20 +9,20 @@
         padding: 0;
         margin: 0;
     }
+    a {
+        text-decoration: none;
+        color: white;  
+    }
 
    
 }
 
 .nav-bar-item {
     display: block;
-    padding: 1rem;
+    padding: .5rem;
     list-style: none;
     
-    a {
-        text-decoration: none;
-        color: white;
-        
-    }
+    
 }
 
 .active {
