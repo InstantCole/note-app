@@ -14,6 +14,11 @@ const AppNavigation = () => (
                 Add Note
                     </li>
         </NavLink>
+        <NavLink to="/note/123" activeClassName="active">
+            <li className="nav-bar-item">
+                Note
+                    </li>
+        </NavLink>
 
     </ul>
 </nav>
