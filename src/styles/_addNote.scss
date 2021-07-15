@@ -1,0 +1,23 @@
+.add-note-form {
+    display: flexbox;
+    flex-direction: colomn;
+    width: 100%;
+}
+
+.add-note-text {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 15rem;
+    border: none;
+    resize: vertical;
+}
+
+.add-note-button {
+    border: none;
+    background-color: darkorange;
+    color: white;
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+}

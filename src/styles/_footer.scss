@@ -25,12 +25,14 @@
         display: flex;
         justify-content: center;
         align-items: flex-start;
+        margin-top: 3rem;
 
         ul {
             width: 60%;
             max-width: 32rem;
             display: flex;
             justify-content: space-evenly;
+            padding: 0;
         }
 
         li {

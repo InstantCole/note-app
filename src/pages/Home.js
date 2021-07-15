@@ -1,16 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useRecoilValue } from 'recoil'
+import { notesState } from '../reducers/states'
 
 const Home = () => {
-    const notes = useSelector(state => state.notes)
+    const notes = useRecoilValue(notesState)
     const noteList = notes.map((note) => (
-        <Link to={`/note/${note.noteId}`}>Note</Link>
+        <li>
+            <Link to={`/note/${note.noteId}`}>Note</Link>
+        </li>
     ))
+    console.log(notes)
     return (
         <div>
             <p>homepage</p>
-            {noteList}
+            <ul>
+                {noteList}
+            </ul>
         </div>
     )
 }

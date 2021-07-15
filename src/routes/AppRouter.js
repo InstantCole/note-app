@@ -1,7 +1,6 @@
 import React from 'react'
-import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import store from '../store/store'
+import { RecoilRoot } from 'recoil'
 import Layout from '../components/Layout'
 import Home from '../pages/Home'
 import AddNote from '../pages/AddNote'
@@ -10,7 +9,7 @@ import AppNavigation from '../navigation/AppNavigation'
 
 
 const Router = () => (
-    <Provider store={store}>
+    <RecoilRoot>
         <Layout>
             <BrowserRouter  >
                 <div>
@@ -24,7 +23,7 @@ const Router = () => (
 
             </BrowserRouter>
         </Layout>
-    </Provider>
+    </RecoilRoot>
 
 )
 

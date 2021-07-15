@@ -1,20 +1,18 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { notesState } from '../reducers/states'
+import { useRecoilValue } from 'recoil'
 
 
 const Note = (props) => {
-    console.log(props)
-
+    const notes = useRecoilValue(notesState)
     const { noteId } = props.match.params
-    console.log(noteId)
-    const thisNote = useSelector(state =>
-        state.notes.find(note => note.noteId === noteId ))
-      
+    const thisNote = notes.find(note => note.noteId === props.match.params.noteId)
 
-      console.log(thisNote)
-    
-    return(
-        <p>{thisNote.noteContent}</p>
+    return (
+        <div>
+        <p className="note-pre-wrap">{thisNote.noteContent}</p>
+        {thisNote.noteTags && (thisNote.noteTags.map(noteTag => <p>{noteTag}</p>))}
+        </div>
     )
 }
 
