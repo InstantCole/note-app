@@ -10,7 +10,6 @@ const AddNote = (props) => {
 
     const [noteText, setNoteText] = useState('')
     const [notes, setNotes] = useRecoilState(notesState)
-    let tagsArray
 
 
     const handleChange = ({target: {value}}) => {
@@ -19,6 +18,9 @@ const AddNote = (props) => {
 
     const handleAddNote = (e) => {
         e.preventDefault()
+        const pattern = /[^a-zA-Z-]+/
+        const tagsArray = e.target.value.split(pattern).filter(word => word.length > 2)
+        console.log("the tags Array",tagsArray)
         setNotes((oldNotes) => [
             ...oldNotes,
             {
