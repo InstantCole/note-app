@@ -19,14 +19,14 @@ const AddNote = (props) => {
     const handleAddNote = (e) => {
         e.preventDefault()
         const pattern = /[^a-zA-Z-]+/
-        const tagsArray = e.target.value.split(pattern).filter(word => word.length > 2)
+        const tagsArray = e.target.value.split(pattern)
         console.log("the tags Array",tagsArray)
         setNotes((oldNotes) => [
             ...oldNotes,
             {
                 noteId: nanoid(),
                 noteContent: noteText,
-                noteTags: ["cat", "gerbal"]
+                noteTags: tagsArray
             }
         ])
         setNoteText('')
