@@ -6,8 +6,6 @@ function Layout(props) {
             <div className="content">
                 {props.children}
             </div>
-            
-            
         </div>
     )
 }

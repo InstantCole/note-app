@@ -4,6 +4,7 @@ import { RecoilRoot } from 'recoil'
 import Layout from '../components/Layout'
 import Home from '../pages/Home'
 import AddNote from '../pages/AddNote'
+import Options from '../pages/Options'
 import Note from '../pages/Note'
 import AppNavigation from '../navigation/AppNavigation'
 
@@ -18,6 +19,7 @@ const Router = () => (
                         <Route path='/' component={Home} exact={true} />
                         <Route path='/add-note' component={AddNote} />
                         <Route path='/note/:noteId' component={Note} />
+                        <Route path='/options' component={Options} />
                     </Switch>
                 </div>
             </BrowserRouter>

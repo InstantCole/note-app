@@ -1,5 +1,11 @@
-@import './layout';
-@import './footer';
-@import './imageButton';
-@import './addNote';
-@import './note';
+@import "./layout";
+@import "./footer";
+@import "./imageButton";
+@import "./addNote";
+@import "./note";
+@import "./options";
+
+:root {
+    --main-color: rgb(120, 222, 222);
+    --bg-color: black;
+}

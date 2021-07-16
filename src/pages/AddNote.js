@@ -20,22 +20,23 @@ const AddNote = (props) => {
 
     const handleChange = ({ target: { value } }) => {
 
-        const patternA = /[^a-z#A-Z0-9-]+/
-        setTagsList(noteText.split(patternA).filter(word => word.charAt(0) == "#"))
-        const patternB = /[^a-zA-Z0-9-]+/
+        const patternA = /\s+/
+        setTagsList(noteText.split(patternA).filter(word => word.charAt(0) == "#" && word.length > 1))
+        const patternB = /[^a-z#A-Z0-9-]+/
         setTagsList(prevTags => prevTags.map(tag => tag.substr(1, tag.length)))
         setNoteText(value)
     }
 
     const handleAddNote = (e) => {
         e.preventDefault()
-
+        let sortedTagsList = tagsList.map((tag) => tag)
+        sortedTagsList.sort()
         setNotes((oldNotes) => [
             ...oldNotes,
             {
                 noteId: nanoid(),
                 noteContent: noteText,
-                noteTags: tagsList
+                noteTags: sortedTagsList
             }
         ])
         setNoteText('')
@@ -55,7 +56,7 @@ const AddNote = (props) => {
             <div className="tags-container">
                 <h2>Tags</h2>
                 <div className="tags-list">
-                {tagsList.map(tag => <p>{tag}</p>)}
+                {tagsList.map(tag => <h4><span style={{color: "var(--main-color)"}}>#</span>{tag}</h4>)}
                 </div>
             </div>
         </div>

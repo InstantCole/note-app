@@ -43,11 +43,13 @@
     width: 100%;
     flex-grow: 1;
     resize: vertical;
+    box-sizing: border-box;
+    padding: 1rem;
 }
 
 .add-note-button {
     border: none;
-    background-color: darkorange;
+    background-color: var(--main-color);
     color: white;
     width: 100%;
     margin: 0;
