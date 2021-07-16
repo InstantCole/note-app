@@ -4,15 +4,22 @@ body {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 .content {
-    width: 20rem;
+    margin-left: 7rem;
+    width: 70%;
     margin: 0 auto;
 }
 
 .nav-bar {
     display: flex;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1;
     background-color: black;
-    justify-content: space-between;
-    margin-bottom: 3rem;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 3rem;
+
 
     ul {
         display: flex;

@@ -17,10 +17,9 @@ const Router = () => (
                     <Switch>
                         <Route path='/' component={Home} exact={true} />
                         <Route path='/add-note' component={AddNote} />
-                        <Route path='/note/:noteId' component={Note}/>
+                        <Route path='/note/:noteId' component={Note} />
                     </Switch>
                 </div>
-
             </BrowserRouter>
         </Layout>
     </RecoilRoot>

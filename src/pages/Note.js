@@ -9,9 +9,11 @@ const Note = (props) => {
     const thisNote = notes.find(note => note.noteId === props.match.params.noteId)
 
     return (
-        <div>
-        <p className="note-pre-wrap">{thisNote.noteContent}</p>
-        {thisNote.noteTags && (thisNote.noteTags.map(noteTag => <p>{noteTag}</p>))}
+        <div className="note-content">
+            <h1>Note</h1>
+            <p className="note-pre-wrap">{thisNote.noteContent}</p>
+            <h3>Tags</h3>
+            {thisNote.noteTags && (thisNote.noteTags.map(noteTag => <p>{noteTag}</p>))}
         </div>
     )
 }

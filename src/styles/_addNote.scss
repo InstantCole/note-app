@@ -1,15 +1,47 @@
-.add-note-form {
-    display: flexbox;
-    flex-direction: colomn;
+.add-note-wrapper {
     width: 100%;
+    height: 27rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.add-note-container {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 70%;
+    margin-right: 2rem;
+}
+
+.tags-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: scroll;
+}
+
+.tags-list {
+    background-color: rgb(61, 61, 61);
+    color: white;
+    overflow: scroll;
+    height: 100%;
+    padding: 1rem;
+}
+
+.add-note-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    align-items: center;
 }
 
 .add-note-text {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    height: 15rem;
     border: none;
+    width: 100%;
+    flex-grow: 1;
     resize: vertical;
 }
 
