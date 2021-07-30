@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { notesState } from '../reducers/states'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 
 
 
@@ -14,13 +14,24 @@ const Note = (props) => {
     console.log(noteIndex)
     const textRef = useRef(null)
 
-   
+
+    useEffect(() => {
+        const focusedElement = textRef.current
+        if (focusedElement.nodeName === "TEXTAREA" && document.activeElement != focusedElement) {
+            focusedElement.focus()
+            focusedElement.select()
+        }
+    })
 
     const handleEditNote = (e) => {
         e.preventDefault()
         setEditable(true)
-        textRef.current.focus()
-
+        const focusedElement = textRef.current
+        console.log(focusedElement)
+        focusedElement.focus()
+        if (focusedElement.nodeName === "TEXTAREA") {
+            focusedElement.select()
+        }
     }
 
     const handleSaveNote = (e) => {
@@ -42,12 +53,20 @@ const Note = (props) => {
 
     }
 
+    const handleCancelEdit = (e) => {
+        e.preventDefault()
+        setEditable(false)
+        setNoteText(notes[noteIndex].noteText)
+        setNoteTags(notes[noteIndex].noteTags)
+
+
+    }
+
     const handleNoteTextChange = ({ target: { value } }) => {
-        const patternA = /\s+/
-        setNoteTags(noteText.split(patternA).filter(word => word.charAt(0) == "#" && word.length > 1))
-        const patternB = /[^a-z#A-Z0-9-]+/
-        setNoteTags(prevTags => prevTags.map(tag => tag.substr(1, tag.length)))
         setNoteText(value)
+        const patternA = /\s+/
+        setNoteTags(value.split(patternA).filter(word => word.charAt(0) == "#" && word.length > 1))
+        setNoteTags(prevTags => prevTags.map(tag => tag.substr(1, tag.length)))
 
 
     }
@@ -59,10 +78,11 @@ const Note = (props) => {
             <div className="add-note-container">
                 <h2>Note {noteIndex + 1}</h2>
                 <form className="add-note-form">
-                    {!editable && <p className="add-note-text note-pre-wrap">{noteText}</p>}
+                    {!editable && <p ref={textRef} className="add-note-text note-pre-wrap">{noteText}</p>}
                     {editable && <textarea ref={textRef} className="add-note-text" value={noteText} onChange={handleNoteTextChange}></textarea>}
-                    {!editable && <button className="add-note-button" onClick={handleEditNote} >Edit</button>}
-                    {editable && <button className="add-note-button" onClick={handleSaveNote} >Save</button>}
+                    {!editable && <button className="edit-note-button note-button" onClick={handleEditNote} >Edit</button>}
+                    {editable && <button className="cancel-note-button note-button" onClick={handleCancelEdit} >Cancel</button>}
+                    {editable && <button className="save-note-button note-button" onClick={handleSaveNote} >Save</button>}
                 </form>
             </div>
             <div className="tags-container">

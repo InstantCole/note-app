@@ -5,6 +5,7 @@ import { notesState } from '../reducers/states'
 
 const Notes = () => {
     const notes = useRecoilValue(notesState)
+    console.log(notes.notesState)
 
     let noteList
     if(notes.length > 3)

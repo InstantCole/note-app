@@ -48,7 +48,7 @@ const AddNote = (props) => {
                 <h2>New Note</h2>
                 <form className="add-note-form">
                     <textarea className="add-note-text" onChange={handleChange} value={noteText}></textarea>
-                    <button className="add-note-button" onClick={handleAddNote}>Add</button>
+                    <button className="add-note-button note-button" onClick={handleAddNote}>Add</button>
                 </form>
             </div>
             <div className="tags-container">
