@@ -9,11 +9,15 @@
     display: block;
     text-decoration: none;
     cursor: pointer;
-    color: var(--main-color);
+    color: var(--text-color);
     width: 23rem;
     background-color: rgb(122, 122, 122);
     border-radius: 0.25rem;
 
+}
+
+.note-list-card:hover {
+    background-color: var(--main-color);
 }
 
 link {

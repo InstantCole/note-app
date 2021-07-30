@@ -11,7 +11,7 @@ const Note = (props) => {
     const noteIndex = notes.findIndex(note => note.noteId === props.match.params.noteId)
     const [noteText, setNoteText] = useState(notes[noteIndex].noteText)
     const [noteTags, setNoteTags] = useState(notes[noteIndex].noteTags)
-    console.log(noteIndex)
+    console.log("noteindex", noteIndex)
     const textRef = useRef(null)
 
 
@@ -21,6 +21,7 @@ const Note = (props) => {
             focusedElement.focus()
             focusedElement.select()
         }
+        console.log("localstorage:", localStorage)
     })
 
     const handleEditNote = (e) => {
@@ -38,7 +39,7 @@ const Note = (props) => {
         e.preventDefault()
         const firstHalfNotes = notes.slice(0, noteIndex)
         const lastHalfNotes = notes.slice(noteIndex + 1, notes.length)
-        console.log(lastHalfNotes)
+        console.log("lastHalfNotes:", lastHalfNotes)
         setNotes(() => [
             ...firstHalfNotes,
             {
@@ -49,7 +50,7 @@ const Note = (props) => {
             ...lastHalfNotes
         ])
         setEditable(false)
-        console.log(notes)
+        console.log("notes:",notes)
 
     }
 

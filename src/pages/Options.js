@@ -79,31 +79,6 @@ const Options = (props) => {
 
     }
 
-    // const handleToggleNight = ({ target }) => {
-
-    //     switch (target.checked) {
-    //         case true:
-    //             {
-    //                 target.classList.add("dark-mode")
-    //                 document.documentElement.style.setProperty("--bg-color", "#000000")
-    //                 document.cookie = "darkmode=on; expires=Fri, 31 Dec 9999 23:59:59 GMT"
-    //                 console.log("turning the slider on", target.checked)
-    //                 break
-    //             }
-
-    //         case false:
-    //             {
-    //                 target.classList.remove("dark-mode")
-    //                 document.documentElement.style.setProperty("--bg-color", "#ffffff")
-    //                 document.cookie = "darkmode=off; expires=Fri, 31 Dec 9999 23:59:59 GMT"
-    //                 console.log("turning the slider off", target.checked)
-    //                 break
-    //             }
-    //     }
-
-
-    // }
-
 
 
 
@@ -115,7 +90,7 @@ const Options = (props) => {
                 <h2>New Note</h2>
                 <form className="add-note-form">
                     <textarea className="add-note-text" defaultValue="Example Text"></textarea>
-                    <button className="add-note-button" onClick={(e) => e.preventDefault()}>Add</button>
+                    <button className="add-note-button note-button" onClick={(e) => e.preventDefault()}>Add</button>
                 </form>
             </div>
             <label htmlFor="red-slider">Red</label>

@@ -28,6 +28,10 @@ const AddNote = (props) => {
 
     const handleAddNote = (e) => {
         e.preventDefault()
+        if(noteText === ""){
+            alert("The note was not saved because it was empty.")
+            return
+        }
         const sortedTagsList = noteTags.map((tag) => tag).sort()
         setNotes((oldNotes) => [
             ...oldNotes,
@@ -39,7 +43,7 @@ const AddNote = (props) => {
         ])
         setNoteText('')
         setNoteTags([])
-        console.log(notes)
+        console.log("notes:", notes)
     }
 
     return (
