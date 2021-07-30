@@ -6,7 +6,7 @@ const AppNavigation = () => (
         <ul>
             <NavLink to="/" activeClassName="active" exact={true}>
                 <li className="nav-bar-item">
-                    Home
+                    Notes
                 </li>
             </NavLink>
             <NavLink to="/add-note" activeClassName="active">

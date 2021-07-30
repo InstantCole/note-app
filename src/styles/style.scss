@@ -1,11 +1,12 @@
 @import "./layout";
 @import "./footer";
 @import "./imageButton";
-@import "./addNote";
 @import "./note";
 @import "./options";
+@import "./notes";
 
 :root {
     --main-color: rgb(120, 222, 222);
     --bg-color: black;
+    --text-color: white;
 }

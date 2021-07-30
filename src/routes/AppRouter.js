@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { RecoilRoot } from 'recoil'
 import Layout from '../components/Layout'
-import Home from '../pages/Home'
+import Notes from '../pages/Notes'
 import AddNote from '../pages/AddNote'
 import Options from '../pages/Options'
 import Note from '../pages/Note'
@@ -16,7 +16,7 @@ const Router = () => (
                 <div>
                     <AppNavigation />
                     <Switch>
-                        <Route path='/' component={Home} exact={true} />
+                        <Route path='/' component={Notes} exact={true} />
                         <Route path='/add-note' component={AddNote} />
                         <Route path='/note/:noteId' component={Note} />
                         <Route path='/options' component={Options} />

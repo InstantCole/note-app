@@ -1,12 +1,22 @@
 import { atom } from "recoil"
 
+
+
 export const notesState = atom({
     key: 'notesState',
-    default: [{
-        noteId: "123",
-        noteContent: "My first note!",
-        noteTags: ["fun"]
+    default: [],
+    effects_UNSTABLE: [({ setSelf, onSet }) => {
+        JSON.parse(localStorage.getItem("notes")) && setSelf(JSON.parse(localStorage.getItem("notes")))
+        onSet(value => localStorage.setItem("notes", JSON.stringify(value)))
     }]
+})
+
+
+
+
+export const darkModeState = atom({
+    key: 'darkModeState',
+    default: true
 })
 
 

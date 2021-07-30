@@ -14,33 +14,31 @@ const AddNote = (props) => {
 
     const [noteText, setNoteText] = useState('')
     const [notes, setNotes] = useRecoilState(notesState)
-    const [tagsList, setTagsList] = useState([])
+    const [noteTags, setNoteTags] = useState([])
 
 
 
     const handleChange = ({ target: { value } }) => {
-
-        const patternA = /\s+/
-        setTagsList(noteText.split(patternA).filter(word => word.charAt(0) == "#" && word.length > 1))
-        const patternB = /[^a-z#A-Z0-9-]+/
-        setTagsList(prevTags => prevTags.map(tag => tag.substr(1, tag.length)))
         setNoteText(value)
+        const patternA = /\s+/
+        setNoteTags(value.split(patternA).filter(word => word.charAt(0) == "#" && word.length > 1))
+        setNoteTags(prevTags => prevTags.map(tag => tag.substr(1, tag.length)))
+        
     }
 
     const handleAddNote = (e) => {
         e.preventDefault()
-        let sortedTagsList = tagsList.map((tag) => tag)
-        sortedTagsList.sort()
+        const sortedTagsList = noteTags.map((tag) => tag).sort()
         setNotes((oldNotes) => [
             ...oldNotes,
             {
                 noteId: nanoid(),
-                noteContent: noteText,
+                noteText: noteText,
                 noteTags: sortedTagsList
             }
         ])
         setNoteText('')
-        setTagsList([])
+        setNoteTags([])
         console.log(notes)
     }
 
@@ -56,7 +54,7 @@ const AddNote = (props) => {
             <div className="tags-container">
                 <h2>Tags</h2>
                 <div className="tags-list">
-                {tagsList.map(tag => <h4><span style={{color: "var(--main-color)"}}>#</span>{tag}</h4>)}
+                {noteTags.map(tag => <h4><span style={{color: "var(--main-color)"}}>#</span>{tag}</h4>)}
                 </div>
             </div>
         </div>
