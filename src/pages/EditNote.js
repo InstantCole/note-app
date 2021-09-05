@@ -1,5 +1,5 @@
 import React from 'react'
-import { notesState } from '../reducers/states'
+import { notesState } from '../recoil/states'
 import { useRecoilValue } from 'recoil'
 
 

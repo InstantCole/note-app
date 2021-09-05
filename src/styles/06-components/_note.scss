@@ -40,6 +40,13 @@
     padding: 1rem;
 }
 
+.add-note-title {
+    width: 100%;
+    box-sizing: border-box;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
 .add-note-form {
     display: flex;
     flex-direction: column;

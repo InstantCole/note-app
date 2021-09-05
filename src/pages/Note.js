@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { notesState } from '../reducers/states'
+import { notesState } from '../recoil/states'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 
 

@@ -1,7 +1,5 @@
 import { atom } from "recoil"
 
-
-
 export const notesState = atom({
     key: 'notesState',
     default: [],
@@ -11,13 +9,6 @@ export const notesState = atom({
     }]
 })
 
-
-
-
-export const darkModeState = atom({
-    key: 'darkModeState',
-    default: true
-})
 
 
 
