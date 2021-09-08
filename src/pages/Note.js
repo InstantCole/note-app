@@ -1,29 +1,38 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import TagsList from '../components/TagsList'
 import { notesState } from '../recoil/states'
 import { useRecoilState, useSetRecoilState } from 'recoil'
+import { nanoid } from '@reduxjs/toolkit'
+
 
 
 
 const Note = (props) => {
+    const isNewNote = (props.location.pathname === "/add-note") ? true : false
     const [notes, setNotes] = useRecoilState(notesState)
     const [editable, setEditable] = useState(false)
-    const { noteId } = props.match.params
+    const { noteId } = useParams()
     const noteIndex = notes.findIndex(note => note.noteId === props.match.params.noteId)
-    const [noteText, setNoteText] = useState(notes[noteIndex].noteText)
-    const [noteTags, setNoteTags] = useState(notes[noteIndex].noteTags)
-    console.log("noteindex", noteIndex)
+    const thisNote = notes[noteIndex]
+    const [noteTitle, setNoteTitle] = useState(thisNote.noteTitle)
+    const [noteText, setNoteText] = useState(thisNote.noteText)
+    const [noteTags, setNoteTags] = useState(thisNote.noteTags)
+    const noteEditCount = thisNote.noteEditCount || 0
     const textRef = useRef(null)
 
 
+
     useEffect(() => {
-        const focusedElement = textRef.current
-        if (focusedElement.nodeName === "TEXTAREA" && document.activeElement != focusedElement) {
+        const focusedElement = textRef.current 
+        if ( focusedElement && focusedElement.nodeName === "TEXTAREA" && document.activeElement != focusedElement) {
             focusedElement.focus()
             focusedElement.select()
         }
-        console.log("localstorage:", localStorage)
+
     })
 
+    //Only for existing notes
     const handleEditNote = (e) => {
         e.preventDefault()
         setEditable(true)
@@ -35,34 +44,65 @@ const Note = (props) => {
         }
     }
 
+
+    //Only for existing notes
     const handleSaveNote = (e) => {
         e.preventDefault()
         const firstHalfNotes = notes.slice(0, noteIndex)
         const lastHalfNotes = notes.slice(noteIndex + 1, notes.length)
-        console.log("lastHalfNotes:", lastHalfNotes)
         setNotes(() => [
             ...firstHalfNotes,
             {
+                ...thisNote,
                 noteId: noteId,
                 noteText: noteText,
-                noteTags: noteTags
+                noteTags: noteTags,
+                noteLastEditedDate: new Date(),
+                noteEditCount: noteEditCount + 1,
             },
             ...lastHalfNotes
         ])
         setEditable(false)
-        console.log("notes:",notes)
 
     }
 
+    //Only for new notes
+    const handleAddNote = (e) => {
+        e.preventDefault()
+        if (noteText === "") {
+            alert("The note was not saved because it was empty.")
+            return
+        }
+        if (titleText === "") {
+            alert("The note needs a title.")
+            return
+        }
+        const sortedTagsList = noteTags.map((tag) => tag).sort()
+        setNotes((oldNotes) => [
+            ...oldNotes,
+            {
+                noteId: nanoid(),
+                noteTitle: titleText,
+                noteText: noteText,
+                noteTags: sortedTagsList
+            }
+        ])
+        setNoteTitle('')
+        setNoteText('')
+        setNoteTags([])
+    }
+
+    //Only for existing notes
     const handleCancelEdit = (e) => {
         e.preventDefault()
         setEditable(false)
-        setNoteText(notes[noteIndex].noteText)
-        setNoteTags(notes[noteIndex].noteTags)
+        setNoteText(thisNote.noteText)
+        setNoteTags(thisNote.noteTags)
 
 
     }
 
+    //Stays the same
     const handleNoteTextChange = ({ target: { value } }) => {
         setNoteText(value)
         const patternA = /\s+/
@@ -72,27 +112,39 @@ const Note = (props) => {
 
     }
 
-    const tagsList = noteTags.map(tag => <h4><span style={{ color: "var(--main-color)" }}>#</span>{tag}</h4>)
+    const handleTitleChange = ({ target: { value } }) => {
+        setNoteTitle(value)
+    }
+
 
     return (
-        <div className="add-note-wrapper">
-            <div className="add-note-container">
-                <h2>Note {noteIndex + 1}</h2>
-                <form className="add-note-form">
-                    {!editable && <p ref={textRef} className="add-note-text note-pre-wrap">{noteText}</p>}
-                    {editable && <textarea ref={textRef} className="add-note-text" value={noteText} onChange={handleNoteTextChange}></textarea>}
-                    {!editable && <button className="edit-note-button note-button" onClick={handleEditNote} >Edit</button>}
-                    {editable && <button className="cancel-note-button note-button" onClick={handleCancelEdit} >Cancel</button>}
-                    {editable && <button className="save-note-button note-button" onClick={handleSaveNote} >Save</button>}
+
+        <div className="add-note-container row">
+            <div className="col-8">
+            {!editable && <h2>{noteTitle}</h2>}
+            {editable && <h2>Editing {noteTitle}</h2>}
+
+                <form id="noteform" className="add-note-form fit-screen-vertical">
+                    {!editable && <p className="add-note-text note-pre-wrap">{noteText}</p>}
+                    {editable && <input className="add-note-title" type="text" onChange={handleTitleChange} placeholder="Note Title" value={noteTitle} />}
+                    {editable && <textarea ref={textRef} className="add-note-text note-pre-wrap" value={noteText} onChange={handleNoteTextChange}></textarea>}
                 </form>
             </div>
-            <div className="tags-container">
+
+            <div className="col-4">
                 <h2>Tags</h2>
-                <div className="tags-list">
-                    {tagsList}
+                <div className="tags-container fit-screen-vertical">
+                    <TagsList noteTags={noteTags} />
                 </div>
             </div>
+            <div className="row">
+                {!editable && <button className="button button--edit" onClick={handleEditNote} >Edit</button>}
+                {editable && <button className="button button--cancel" onClick={handleCancelEdit} >Cancel</button>}
+                {editable && <button className="button button--save" type="submit" form="noteform" onClick={handleSaveNote} >Save</button>}
+
+            </div>
         </div>
+
 
 
 

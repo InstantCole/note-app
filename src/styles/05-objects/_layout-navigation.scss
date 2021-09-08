@@ -1,0 +1,37 @@
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background-color: black;
+    margin-top: 3rem;
+    font-size: 1rem;
+    font-weight: bold;
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        margin: 0;
+        
+    }
+    a {
+        text-decoration: none;
+        color: white;
+    }
+}
+
+.nav-bar-item {
+    display: block;
+    padding: 0.5rem 3rem;
+    list-style: none;
+}
+
+.active {
+    background-color: var(--main-color);
+}

@@ -1,12 +1,15 @@
-@import "./layout";
-@import "./footer";
-@import "./imageButton";
+@import "./01-settings/globals";
+@import "04-elements/elements";
+@import "05-objects/layout-navigation";
+@import "05-objects/objects";
 @import "06-components/note";
-@import "./options";
-@import "./notes";
+@import "06-components/options";
+@import "06-components/notes";
+@import "06-components/noteMenuButton";
+@import "07-utilities/paddings";
 
-:root {
-    --main-color: rgb(120, 222, 222);
-    --bg-color: black;
-    --text-color: white;
-}
+//@import "./footer";
+// @import "./imageButton";
+
+
+

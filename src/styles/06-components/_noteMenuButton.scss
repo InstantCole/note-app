@@ -1,0 +1,20 @@
+.note-menu-button {
+    display: inline-block;
+    position: absolute;
+    margin: 1rem;
+    right: 0px;
+
+}
+
+.menu-box {
+    position: absolute;
+    background-color: var(--text-color);
+    width: 100px;
+    height: 100px;
+    right: -115px;
+    top: -25px;
+}
+
+.hidden {
+    visibility: hidden;
+}
